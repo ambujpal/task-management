@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:task_management/database/db_helper.dart';
 import 'package:task_management/models/task_model.dart';
+import 'package:task_management/utils/routes/routes_name.dart';
 
 class HomeProvider with ChangeNotifier {
   TextEditingController searchC = TextEditingController();
@@ -79,6 +81,12 @@ class HomeProvider with ChangeNotifier {
     filterList.clear();
     filterList.addAll(taskList);
     notifyListeners();
+  }
+
+  void logout(context) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setBool('isLoggedIn', false);
+    Navigator.pushReplacementNamed(context, AppRoutesName.loginScreen);
   }
 
   Future<dynamic> deleteTask(int id) async {

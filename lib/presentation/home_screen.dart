@@ -18,6 +18,7 @@ class HomeScreen extends StatelessWidget {
     return Consumer<HomeProvider>(builder: (context, provider, child) {
       return Scaffold(
         appBar: AppBar(
+          automaticallyImplyLeading: false,
           backgroundColor: AppColors.secondaryColor,
           title: Text(
             "Task Management",
@@ -25,12 +26,18 @@ class HomeScreen extends StatelessWidget {
           ),
           actions: [
             IconButton(
+                visualDensity:
+                    const VisualDensity(horizontal: -4, vertical: -4),
                 onPressed: provider.searchShowHide,
                 icon: Icon(
                   Icons.search,
                   color: AppColors.white,
                 )),
             TextButton(
+              style: TextButton.styleFrom(
+                visualDensity:
+                    const VisualDensity(horizontal: -4, vertical: -4),
+              ),
               onPressed: () {
                 Navigator.push(
                   context,
@@ -50,7 +57,17 @@ class HomeScreen extends StatelessWidget {
                 "Add",
                 style: AppTextStyle.ts16BW,
               ),
-            )
+            ),
+            IconButton(
+              visualDensity: const VisualDensity(horizontal: -4, vertical: -4),
+              onPressed: () {
+                provider.logout(context);
+              },
+              icon: Icon(
+                Icons.logout,
+                color: AppColors.white,
+              ),
+            ),
           ],
         ),
         body: SafeArea(
