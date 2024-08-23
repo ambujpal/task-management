@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:task_management/provider/auth_provider/login_provider.dart';
+import 'package:task_management/provider/auth_provider/signup_provider.dart';
 import 'package:task_management/provider/create_task_provider.dart';
 import 'package:task_management/provider/home_provider.dart';
 import 'package:task_management/provider/splash_provider.dart';
@@ -8,12 +10,17 @@ import 'package:task_management/utils/routes/routes.dart';
 import 'package:task_management/utils/routes/routes_name.dart';
 
 void main() {
-  runApp(MultiProvider(providers: [
-    ChangeNotifierProvider(create: (_) => SplashProvider()),
-    ChangeNotifierProvider(create: (_) => HomeProvider()),
-    ChangeNotifierProvider(create: (_) => CreateTaskProvider()),
-    ChangeNotifierProvider(create: (_) => TaskDetailsProvider()),
-  ], child: const MyApp()));
+  runApp(MultiProvider(
+    providers: [
+      ChangeNotifierProvider(create: (_) => SplashProvider()),
+      ChangeNotifierProvider(create: (_) => LoginProvider()),
+      ChangeNotifierProvider(create: (_) => SignupProvider()),
+      ChangeNotifierProvider(create: (_) => HomeProvider()),
+      ChangeNotifierProvider(create: (_) => CreateTaskProvider()),
+      ChangeNotifierProvider(create: (_) => TaskDetailsProvider()),
+    ],
+    child: const MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
@@ -28,9 +35,8 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      initialRoute: RoutesName.wrapScreen,
+      initialRoute: AppRoutesName.splashScreen,
       onGenerateRoute: AppRoutes.generateRoute,
-      // home: const WrapperScreen(),
     );
   }
 }
