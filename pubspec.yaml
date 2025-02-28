@@ -23,6 +23,7 @@ dependencies:
   path_provider: 
   path: 
   shared_preferences:
+  http:
   
 
 dev_dependencies:

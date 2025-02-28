@@ -60,7 +60,7 @@ class CreateTaskProvider with ChangeNotifier {
     }
   }
 
-  Future<dynamic> addTask(BuildContext context) async {
+  Future<dynamic> addTask(context) async {
     if (!validation(context)) {
       return;
     }
